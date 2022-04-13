@@ -1,0 +1,24 @@
+  <html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.2/aframe.min.js"></script>
+	<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+  </head>
+  <body background="1.jpg">
+  <a-assets>
+  	<img id="stena" src="stena.jpg">
+    <img id="ground" src="po1.jpg">
+  </a-assets>
+    <a-scene physics="debug: true">
+	
+        <a-entity id="camera" position="0 1.6 0">
+            <a-entity id="camera" acceleration="200w" camera look-controls wasd-controls></a-entity>
+        </a-entity>
+      <a-plane static-body src="#ground" position="0 0 0" rotation="-90 0 0" width="13" height="13" shadow></a-plane>
+      <a-plane static-body src="#stena" position="6 1 0" rotation="180 90 0" width="13" height="2" shadow></a-plane>
+      <a-plane static-body src="#stena" position="-6 1 0" rotation="0 90 0" width="13" height="2" shadow></a-plane>
+      <a-plane static-body src="#stena" position="0 1 6" rotation="0 180 0" width="13" height="2" shadow></a-plane>
+      <a-plane static-body src="#stena" position="0 1 -6" rotation="0 0 0" width="13" height="2" shadow></a-plane>
+      <a-text value="Hello, A-Frame!" color="#000000" position="2 2 0"></a-text>
+    </a-scene>
+  </body>
+</html>

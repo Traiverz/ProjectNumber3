@@ -1,0 +1,43 @@
+  <html>
+  <head>
+ <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script>
+      AFRAME.registerComponent('foo', {
+        init: function() {
+          this.el.addEventListener('collide', function(e) {
+            console.log('Player has collided with ', e.detail.body.el);
+            e.detail.target.el;
+            e.detail.body.el;
+            e.detail.contact; 
+            e.detail.contact.ni; 
+          });
+        }
+      })
+
+    </script>
+	</head>
+  <body background="1.jpg">
+  <a-assets>
+  	<img id="stena" src="stena.jpg">
+    <img id="ground" src="po1.jpg">
+  </a-assets>
+    <a-scene physics="debug: true">
+	
+        <a-entity id="camera" position="0 1.6 20">
+            <a-entity id="camera" acceleration="500w" camera look-controls wasd-controls kinematic-body foo></a-entity>
+        </a-entity>
+	  <a-box src="#ground" static-body position="0 0 0" rotation="-90 0 0" width="20" height="20" depth="0.1" shadow></a-box>
+	  <a-box static-body position="0 0 17.5" rotation="-90 0 0" color="FFFFFF" width="20" height="15" depth="0.1" shadow></a-box>
+      <a-box src="#stena" static-body position="10 1 0" rotation="0 90 180" width="20" height="2" depth="0.1" shadow></a-box>
+	  <a-box src="#stena" static-body position="-10 1 0" rotation="0 90 -180" width="20" height="2" depth="0.1" shadow></a-box>
+	  <a-box src="#stena" static-body position="-6 1 10" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
+	  <a-box src="#stena" static-body position="6 1 10" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
+	  <a-box src="#stena" static-body position="-6 1 -10" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
+	  <a-box src="#stena" static-body position="6 1 -10" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
+
+
+    </a-scene>
+  </body>
+</html>
