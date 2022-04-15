@@ -1,69 +1,56 @@
-  <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Галакси Лабиринт</title>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v$npm_package_version/dist/aframe-physics-system.min.js"></script>
-    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
-    <script>
+	    <script>
       AFRAME.registerComponent('foo', {
         init: function() {
           this.el.addEventListener('collide', function(e) {
             console.log('Player has collided with ', e.detail.body.el);
             e.detail.target.el;
-            e.detail.body.el;
-            e.detail.contact; 
             e.detail.contact.ni; 
           });
         }
       })
-
-    </script>
-	</head>
-  <body background="1.jpg">
-  <a-assets>
+	  </script>
+</head>
+<body background="1.jpg">
+<a-assets>
   	<img id="stena" src="stena.jpg">
     <img id="ground" src="po1.jpg">
-  </a-assets>
-    <a-scene physics>
-      <a-text position="-1 2.2 10.2" value="INPUT" width="15"></a-text>
-      <a-text position="1 2.2 10.2" value="INPUT" rotation="0 180 0" width="15"></a-text>
-      <a-text position="-1 1.8 -10" value="EXIT" width="15"></a-text>
-      <a-text position="1 1.8 -10" value="EXIT" width="15" rotation="0 180 0"></a-text>
-      <a-entity id="camera" position="0 1.2 15">
-          <a-entity id="camera" acceleration="500w" camera rotation="-20 0 0" look-controls wasd-controls dynamic-body foo></a-entity>
-      </a-entity>
-
-    <a-box src="#ground" nav-mesh="" static-body position="0 0 0" rotation="-90 0 0" width="20" height="40" depth="0.1" shadow></a-box>
-    <a-box src="#stena" static-body position="10 1 0" rotation="0 90 180" width="20" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="-10 1 0" rotation="0 90 -180" width="20" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="-6 1 10" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="6 1 10" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="-1.5 1 1" rotation="0 0 0" width="12" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="-6 1 -10" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="6 1 -10" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="0 1 8" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="7 1 3" rotation="0 90 0" width="10" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="4.5 1 -0.5" rotation="0 90 0" width="3" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="4.5 1 5.5" rotation="0 90 0" width="5" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="-7.5 1 5.5" rotation="0 90 0" width="5" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="-7.5 1 -2.8" rotation="0 90 0" width="2" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="-1.5 1 5.5" rotation="0 0 0" width="12" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="2 1 3" rotation="0 0 0" width="5" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="-5 1 3" rotation="0 0 0" width="5" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="-8.8 1 -3.7" rotation="0 0 0" width="2.5" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="5.9 1 -4" rotation="0 0 0" width="8" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="0 1 -1.9" rotation="0 0 0" width="5" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="0 1 -6" rotation="0 0 0" width="5" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="-5 1 -4.8" rotation="0 90 0" width="5.5" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="-2.5 1 -5.9" rotation="0 90 0" width="8.1" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="-7.5 1 -8" rotation="0 90 0" width="4" height="2" depth="0.1" shadow></a-box>
-	  <a-box src="#stena" static-body position="6 1 -8" rotation="0 90 0" width="4" height="2" depth="0.1" shadow></a-box>
-    <a-sphere color="yellow" camera radius="0.2" dynamic-body look-controls wasd-controls position="0 0.5 15"></a-sphere>
-
-
-
+</a-assets>
+<a-scene>
+	    <a-text position="-1 2.2 10.2" value="INPUT" width="15"></a-text>
+		<a-text position="1 2.2 10.2" value="INPUT" rotation="0 180 0" width="15"></a-text>
+		<a-text position="-1 1.8 -10" value="EXIT" width="15"></a-text>
+		<a-text position="1 1.8 -10" value="EXIT" width="15" rotation="0 180 0"></a-text>
+        <a-entity id="camera" position="0 1.6 17" camera look-controls wasd-controls kinematic-body foo></a-entity>
+		<a-box src="#ground" static-body position="0 0 0" rotation="-90 0 0" width="22" height="40" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="10 1 0" rotation="0 90 180" width="20" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="-10 1 0" rotation="0 90 -180" width="20" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="-6 1 10" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="6 1 10" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="-1.5 1 1" rotation="0 0 0" width="12" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="-6 1 -10" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="6 1 -10" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="0 1 8" rotation="0 0 0" width="9" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="7 1 3" rotation="0 90 0" width="10" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="4.5 1 -0.5" rotation="0 90 0" width="3" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="4.5 1 5.5" rotation="0 90 0" width="5" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="-7.5 1 5.5" rotation="0 90 0" width="5" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="-7.5 1 -2.8" rotation="0 90 0" width="2" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="-1.5 1 5.5" rotation="0 0 0" width="12" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="2 1 3" rotation="0 0 0" width="5" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="-5 1 3" rotation="0 0 0" width="5" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="-8.8 1 -3.7" rotation="0 0 0" width="2.5" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="5.9 1 -4" rotation="0 0 0" width="8" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="0 1 -1.9" rotation="0 0 0" width="5" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="0 1 -6" rotation="0 0 0" width="5" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="-5 1 -4.8" rotation="0 90 0" width="5.5" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="-2.5 1 -5.9" rotation="0 90 0" width="8.1" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="-7.5 1 -8" rotation="0 90 0" width="4" height="2" depth="0.1" shadow></a-box>
+		<a-box src="#stena" static-body position="6 1 -8" rotation="0 90 0" width="4" height="2" depth="0.1" shadow></a-box>
     </a-scene>
   </body>
 </html>

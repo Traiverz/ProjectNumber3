@@ -1,145 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>Advanced Hello World A-Frame WebXR</title>
-    <meta name="description" content="Продвинутый пример "Hello World", WebXR! A-frame предлагает действительно стоящий пример "Hello World", но обычно вам также требуется возможность выбора контроллера и окружение, позволяющее перемещение. Используя этот пример, вы получите вариант, который будет работать для большинства гарнитур и контроллеров".>
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="gray-translucent" />
-
-<!-- *** ИЗМЕНИТЕ ЭТИ КОМПОНЕНТЫ НА СВОЕМ СЕРВЕРЕ *** -->
-    <script src="aframe-master/dist/aframe-v1.0.4.min.js"></script>
-    <script src="aframe-environment-component-master/dist/aframe-environment-component.min.js"></script>
-    <script src="aframe-extras-master/dist/aframe-extras.min.js"></script>
-    <script src="aframe-teleport-controls-master/dist/aframe-teleport-controls.js"></script>
-    <script src="superframe-master/components/thumb-controls/dist/aframe-thumb-controls-component.min.js"></script>
-    <!-- These are added to provide for 3D text and tracked movement of the duck 3D model  -->
-    <script src="superframe-master/components/text-geometry/dist/aframe-text-geometry-component.min.js"></script>
-    <script src="aframe-alongpath-component-master/dist/aframe-alongpath-component.min.js" ></script>
-    <script src="aframe-curve-component-master/dist/aframe-curve-component.min.js"></script>
-
-<!-- для создания Navmesh (сетки навигации)... Также раскомментируйте a-scene inspector-plugin-recast
-    <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
-    -->
-
-<!-- JavaScript-код ниже обеспечивает выбор и возможность выполнения действий с объектами, средой и звуком -->
-    <script type="text/javascript">
-
-// Аудио для утки
-      var squawk = new Audio('https://rocketvirtual.com/A-Frame_WebXR/assets/mp3/duck.mp3');
-
-// Функция, срабатывающая по клику
-      function fire_laser() {
-
-// Утка издает звук
-        squawk.play();
-
-// Утка исчезает
-        document.getElementById('movingDuck').setAttribute('visible', 'false');
-      }function doCylinder() {
-        
-        // Возвращаем видимость утки и куба, снова делаем сферу красной
-        document.getElementById('movingDuck').setAttribute('visible',
-true);
-        document.getElementById('cube').setAttribute('visible', true);
-        document.getElementById('sphere').setAttribute('color', 'red');
-      }function doCube() {
-        
-        // Делаем сферу зеленой, временно убираем куб
-        document.getElementById('sphere').setAttribute('color', 'green');
-        document.getElementById('cube').setAttribute('visible', false);      
-      }
-// Компонент, срабатывающий по клику
-      AFRAME.registerComponent('click-listener', {
-        init: function () {this.el.addEventListener('click', function (evt) {
-// Удаляем из сцены объект, по которому кликнули
-                //this.setAttribute('visible', false);
-      
-            });
-        }
-      });
-//   Убираем блокировку звука в Google Chrome https://stackoverflow.com/questions/47921013/play-sound-on-click-in-a-frame?answertab=active#tab-top
-      AFRAME.registerComponent('audiohandler', {
-        init:function() {
-            let playing = false;
-            let audio = document.querySelector("#playAudio");
-            this.el.addEventListener('click', () => {if(!playing) {
-                    audio.play();
-                } else {
-                    audio.pause();
-                    audio.currentTime = 0;
-                }
-                playing = !playing;
-            });
-        }
-      })
-</script>
+<head>
+	<title>3231</title>
 </head>
-  <body>
-
-<button id="playButton" type="button">Play Music</button>
-    <!-- Музыка из .mp3 файла с открытым для использования произведением Моцарта.  Если решите ее заменить, убедитесь, что используете либо открытое произведение, либо свое. -->
-    <audio id="playAudio" autoplay loop>
-        <source src="https://rocketvirtual.com/A-Frame_WebXR/assets/mp3/MozartALittleNightMusic.mp3" type="audio/mpeg">
-    </audio>
-
-<!-- используется для создания Navmesh (сетки навигации)... смотрите javascript-компонент над <a-scene inspector-plugin-recast>  https://github.com/donmccurdy/aframe-inspector-plugin-recast-->
-
-<a-scene background="color: #FAFAFA">
-
-<a-assets>
-            <!-- Шрифт -->
-            <a-asset-item id="optimerBoldFont" src="assets/fonts/optimer_bold.typeface.json"></a-asset-item>
-<!-- 3D GltF модель утки -->
-            <a-asset-item id="duck" src="assets/gltf/Duck.glb"></a-asset-item>
-      </a-assets>
-<!-- nav-mesh: не дает нам проходить сквозь сферу, куб и цилиндр -->
-      <a-entity id="navmesh-Hello" gltf-model="assets/gltf/AdvHelloWorldnavmesh.gltf" visible="false" nav-mesh=""></a-entity>
-<!-- Базовое передвижение и телепортация  -->
-      <a-entity id="cameraRig" movement-controls="constrainToNavMesh: true;" navigator="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: .collision; ignoreEntities: .clickable" position="0 0 0" rotation="0 0 0">
-        <!-- камера-->
-        <a-entity id="head" camera="active: true" position="0 1.6 0" look-controls="pointerLockEnabled: true; reverseMouseDrag: true" ></a-entity>
-              <!-- Левый контроллер  -->
-              <a-entity class="leftController" hand-controls="hand: left; handModelStyle: lowPoly; color: #15ACCF" tracked-controls vive-controls="hand: left" oculus-touch-controls="hand: left" windows-motion-controls="hand: left" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; button: trigger; type: line; curveShootingSpeed: 18; collisionEntities: #navmesh-Hello; landingMaxAngle: 60" visible="true"></a-entity>
-              <!-- Правый контроллер  -->
-              <a-entity class="rightController" hand-controls="hand: right; handModelStyle: lowPoly; color: #15ACCF" tracked-controls vive-controls="hand: right" oculus-touch-controls="hand: right" windows-motion-controls="hand: right" laser-controls raycaster="showLine: true; far: 10; interval: 0; objects: .clickable, a-link;" line="color: lawngreen; opacity: 0.5" visible="true"></a-entity>
-      </a-entity>
-<!-- Стандартные объекты Hello World, измененные для реагирования на клики и аудио -->
-      <a-box id="cube" class="clickable" position="-1 0.66921 -3" rotation="0 45 0" color="#4CC3D9" visible="true" shadow  onclick="doCube();" click-listener></a-box>
-      <a-sphere id="sphere" class="clickable" position="0 1.44508 -5" radius="1.25" color="#EF2D5E" shadow audiohandler></a-sphere>
-      <a-cylinder id="cylinder" class="clickable" position="1 0.8993 -3" radius="0.5" height="1.5" color="#FFC65D" shadow onclick="doCylinder();" click-listener></a-cylinder>
-      <a-plane position="0 0.08958 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow="recieve: true" ></a-plane >
-
-<!-- 3D текст -->
-      <a-entity position="-3.44 2.801 -5.127" text-geometry="value: Advanced" material="color: #EC4DF4"></a-entity>
-      <a-entity position="-0.05 2.793 -5.090" text-geometry="value: Hello World; font: #optimerBoldFont" material="color: #F94DA2"></a-entity>
-
-<a-entity id="movingDuck" class="clickable" gltf-model="#duck" alongpath="curve:#track;loop:true;dur:14000;rotate:true" position="0 1.6 -5" shadow="receive:false" scale="1 1 1" animation__rotate="property: rotation; dur: 2000; easing: linear; loop: true; to: 0 360 0" shadow onclick="fire_laser();" cursor-listener></a-entity>
-
-<!-- Трек для перемещения утки  --> 
-      <a-curve id="track" >
-        <a-curve-point position="0 1 8" geometry="height:0.1;width:0.1;depth:0.1" material="color:#ff0000" curve-point="" visible="true"></a-curve-point>
-        <a-curve-point position="5 1 6" geometry="height:0.1;width:0.1;depth:0.1" material="color:#ff0000" curve-point="" visible="true"></a-curve-point>  
-        <a-curve-point position="7 1 0" geometry="height:0.1;width:0.1;depth:0.1" material="color:#ff0000" curve-point="" visible="true"></a-curve-point>
-        <a-curve-point position="5 1 -5" geometry="height:0.1;width:0.1;depth:0.1" material="color:#ff0000" curve-point="" visible="true"></a-curve-point>
-        <a-curve-point position="0 1 -7" geometry="height:0.1;width:0.1;depth:0.1" material="color:#ff0000" curve-point="" visible="true"></a-curve-point>
-        <a-curve-point position="-6 1 -5" geometry="height:0.1;width:0.1;depth:0.1" material="color:#ff0000" curve-point="" visible="true"></a-curve-point>
-        <a-curve-point position="-8 1 0" geometry="height:0.1;width:0.1;depth:0.1" material="color:#ff0000" curve-point="" visible="true"></a-curve-point>
-        <a-curve-point position="-6 1 6" geometry="height:0.1;width:0.1;depth:0.1" material="color:#ff0000" curve-point="" visible="true"></a-curve-point>
-        <a-curve-point position="0 1 8" geometry="height:0.1;width:0.1;depth:0.1" material="color:#ff0000" curve-point="" visible="true"></a-curve-point>
-      </a-curve>
-
-<!-- Делаем линию траектории красной --> 
-      <a-draw-curve curveref="#track" material="shader: line; color: red;"></a-draw-curve>
-
-<!-- Окружение -->
-      <a-entity environment="preset: forest; dressing: mushrooms; dressingColor: #6e1d8b;" shadow="recieve: true"></a-entity>
-
-<!-- Освещение сцены, отбрасывающее тени -->
-      <a-entity light="intensity: 0.6; castShadow: true; shadowCameraLeft: -10; shadowCameraBottom: -10; shadowCameraRight: 10; shadowCameraTop: 10; shadowCameraVisible: true" position="9.9649 17.32329 13.93447"></a-entity>
-</a-scene>
-  </body>
+<body>
+<img src="1.jpg">
+</body>
 </html>
+
+      <a-sphere position="0 1.25 -3.8" radius="1.25" color="#FFFFFF" shadow></a-sphere>
+      <a-sphere position="0 3.00 -3.8" radius="1.00" color="#FFFFFF" shadow></a-sphere>
+      <a-sphere position="0 4.50 -3.8" radius=".75" color="#FFFFFF" shadow></a-sphere>
+      <a-sphere position="0 3.00 -2.81" radius=".05" color="#000000" shadow></a-sphere>
+      <a-sphere position="0 3.20 -2.84" radius=".05" color="#000000" shadow></a-sphere>
+      <a-sphere position="0 2.80 -2.85" radius=".05" color="#000000" shadow></a-sphere>
+      <a-sphere position="-0.25 4.30 -2.85" radius=".06" color="#000000" shadow></a-sphere>
+      <a-sphere position=".25 4.30 -2.85" radius=".06" color="#000000" shadow></a-sphere>
+      <a-cylinder position="0 4.75 -3.8" radius="0.5" height="1.5" color="#5F9EA0" shadow></a-cylinder>
+      <a-cylinder position="0 4.75 -3.8" radius="1.0" height=".01" color="#5F9EA0" shadow></a-cylinder>
