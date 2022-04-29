@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sphinx
+* source:	https://sketchfab.com/3d-models/sphinx-f5faeb5d570a4b0f825b0bfa6817a27c
+* author:	Geoffrey Marchal (https://sketchfab.com/geoffreymarchal)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sphinx" (https://sketchfab.com/3d-models/sphinx-f5faeb5d570a4b0f825b0bfa6817a27c) by Geoffrey Marchal (https://sketchfab.com/geoffreymarchal) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
